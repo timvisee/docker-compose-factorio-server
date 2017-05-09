@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Start the docker container and detach
+cd docker
+sudo docker build -t factorio-server .

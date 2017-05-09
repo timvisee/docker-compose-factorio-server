@@ -1,0 +1,6 @@
+factorio-server:
+    image: 'factorio-server'
+    ports:
+        - '34197:34197/udp'
+    volumes:
+        - './server:/factorio'

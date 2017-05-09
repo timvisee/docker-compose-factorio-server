@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# STop the docker container and detach
+sudo docker-compose stop
