@@ -26,12 +26,6 @@ RUN rm -rf /var/cache/apk/* \
 # Expose Factorio's port
 EXPOSE 34197
 
-# Run the start script
-RUN ls -al /
-RUN ls -al /opt/factorio
-RUN ls -al /opt/factorio/bin
-RUN ls -al /opt/factorio/bin/x64
-
 # Copy the initialization file
 COPY init.sh /opt/factorio/init.sh
 
