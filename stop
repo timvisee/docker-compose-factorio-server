@@ -1,4 +1,9 @@
 #!/bin/bash
 
-# STop the docker container and detach
+# Send a stop signal to the server
+echo "Sending SIGINT (CRTL-C) to Factorio server..."
+sudo docker-compose exec factorio-server bash -c "pkill -SIGINT factorio"
+echo "Factorio server has quit."
+
+# Stop the docker container and detach
 sudo docker-compose stop
