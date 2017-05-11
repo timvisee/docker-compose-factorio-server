@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Define some constants
+FACTORIO_BIN=/opt/factorio/bin/x64/factorio
 MOUNT_DIR=/factorio
 CONFIG_DIR=$MOUNT_DIR/config
 SAVES_DIR=$MOUNT_DIR/saves
@@ -45,20 +46,25 @@ if [ ! -d "$MODS_DIR" ]; then
     mkdir "$MODS_DIR"
 fi
 
-echo "Changing into Factorio directory..."
-cd /opt/factorio/bin/x64
+# Link the saves and mods folder to the user mounted volume
+if [ ! -e "/opt/factorio/saves" ]; then
+    echo "Linking saves directory..."
+    ln -s /factorio/saves /opt/factorio/saves
+fi
+if [ ! -e "/opt/factorio/mods" ]; then
+    echo "Linking mods directory..."
+    ln -s /factorio/mods /opt/factorio/mods
+fi
 
 # Generate a map if it doesn't exist
 if [ ! -f "$MAP_FILE" ]; then
     echo "Map doesn't exist, generating..."
-    
+
     # Generate the map
-    ./factorio --create $MAP_FILE --server-settings $SERVER_SETTINGS_FILE --map-gen-settings $MAP_GEN_SETTINGS_FILE --map-settings $MAP_SETTINGS_FILE
+    $FACTORIO_BIN --create $MAP_FILE --server-settings $SERVER_SETTINGS_FILE --map-gen-settings $MAP_GEN_SETTINGS_FILE --map-settings $MAP_SETTINGS_FILE
 fi
 
-echo "Starting Factorio server..."
-
 # Start the server, with the latest available save
-exec ./factorio --start-server-load-latest --server-settings $SERVER_SETTINGS_FILE --map-gen-settings $MAP_GEN_SETTINGS_FILE --map-settings $MAP_SETTINGS_FILE
-
+echo "Starting Factorio server..."
+exec $FACTORIO_BIN --start-server-load-latest --server-settings $SERVER_SETTINGS_FILE --map-gen-settings $MAP_GEN_SETTINGS_FILE --map-settings $MAP_SETTINGS_FILE
 echo "Factorio server stopped!"
