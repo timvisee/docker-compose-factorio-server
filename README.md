@@ -12,6 +12,7 @@ Docker-compose is used to easily manage container configurations.
 
 ## Usage
 * Clone repository (`git clone https://github.com/timvisee/docker-compose-factorio-server.git; cd docker-compose-factorio-server`)
+* Build the container (`./build`)
 * Start the container (`./start`)
 
 To stop the container, use the `./stop` script.
