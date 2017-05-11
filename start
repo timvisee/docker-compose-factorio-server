@@ -1,5 +1,5 @@
 #!/bin/bash
 
 # Start the docker container and detach
-#sudo docker-compose up -d
-sudo docker-compose up
+#sudo docker-compose up -d -t 60
+sudo docker-compose up -t 60
