@@ -6,4 +6,4 @@ sudo docker-compose exec factorio-server bash -c "pkill -SIGINT factorio"
 echo "Factorio server has quit."
 
 # Stop the docker container and detach
-sudo docker-compose stop
+sudo docker-compose stop -t 60
